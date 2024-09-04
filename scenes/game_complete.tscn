@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://da1nmf1bf3xtp"]
+
+[ext_resource type="Texture2D" uid="uid://cv6ucwpqvcfuf" path="res://assets/video_game.jpg" id="1_mwynh"]
+[ext_resource type="Script" path="res://scenes/game_complete.gd" id="1_yio6r"]
+
+[node name="Game Complete" type="Node"]
+script = ExtResource("1_yio6r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_mwynh")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 295.0
+offset_top = 527.0
+offset_right = 896.0
+offset_bottom = 740.0
+theme_override_colors/font_color = Color(0.741176, 0.627451, 0.815686, 1)
+theme_override_font_sizes/font_size = 156
+text = "The End"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

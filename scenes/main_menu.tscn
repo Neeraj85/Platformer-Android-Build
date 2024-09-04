@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://1n2qpuyducdh"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_q2iih"]
+[ext_resource type="Texture2D" uid="uid://cco44pfsqrunq" path="res://assets/Screenshot 2024-08-27 195618.png" id="2_wesg5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drsgn"]
+bg_color = Color(0.87451, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xb0te"]
+bg_color = Color(0.650428, 0.335265, 0.344881, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6lx0"]
+bg_color = Color(0.444334, 0.211177, 0.219518, 1)
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q2iih")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1199.0
+offset_bottom = 800.0
+texture = ExtResource("2_wesg5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -124.5
+offset_right = 121.5
+offset_bottom = 124.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_drsgn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xb0te")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lx0")
+text = "Play"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_drsgn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xb0te")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r6lx0")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

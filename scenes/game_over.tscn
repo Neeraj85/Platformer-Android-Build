@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc6dm2emecfhg"]
+
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_a17k4"]
+[ext_resource type="Texture2D" uid="uid://cco44pfsqrunq" path="res://assets/Screenshot 2024-08-27 195618.png" id="1_pqqns"]
+
+[sub_resource type="SystemFont" id="SystemFont_twbp8"]
+font_weight = 425
+
+[node name="Game Over" type="Node"]
+script = ExtResource("1_a17k4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1199.0
+offset_bottom = 800.0
+texture = ExtResource("1_pqqns")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.5
+offset_top = -68.5
+offset_right = 286.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_twbp8")
+theme_override_font_sizes/font_size = 100
+text = "Game Over!"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

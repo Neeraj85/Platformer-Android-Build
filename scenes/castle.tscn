@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbn3y1lrbouay"]
+
+[ext_resource type="Script" path="res://scripts/princess.gd" id="1_jauan"]
+[ext_resource type="Texture2D" uid="uid://b58ubef3eb05d" path="res://assets/sprites/Castle.png" id="2_ub08r"]
+[ext_resource type="AudioStream" uid="uid://j11f8sxvw68e" path="res://assets/sounds/Stage Win (Super Mario) - QuickSounds.com.mp3" id="3_4y3h5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4uy8"]
+size = Vector2(128, 128)
+
+[node name="Castle" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_jauan")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_ub08r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w4uy8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4y3h5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

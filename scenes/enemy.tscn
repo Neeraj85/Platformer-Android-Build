@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cst7iqeg7p1no"]
+
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_61h43"]
+[ext_resource type="Texture2D" uid="uid://bwra1vcrnf1lf" path="res://assets/sprites/slime_green.png" id="1_q1crq"]
+[ext_resource type="PackedScene" uid="uid://caf8oiqx4dpiw" path="res://scenes/killzone.tscn" id="2_dhw38"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u2tq"]
+atlas = ExtResource("1_q1crq")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw5wf"]
+atlas = ExtResource("1_q1crq")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0jng"]
+atlas = ExtResource("1_q1crq")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws20g"]
+atlas = ExtResource("1_q1crq")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u8dgu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u2tq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw5wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0jng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws20g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h3n8"]
+size = Vector2(16, 16)
+
+[node name="enemy" type="Node2D"]
+script = ExtResource("1_61h43")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_u8dgu")
+autoplay = "default"
+frame_progress = 0.708297
+offset = Vector2(0, -5)
+
+[node name="killzone" parent="AnimatedSprite2D" instance=ExtResource("2_dhw38")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/killzone"]
+visible = false
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_7h3n8")
+
+[node name="RCright" type="RayCast2D" parent="."]
+target_position = Vector2(7, 0)
+
+[node name="RCleft" type="RayCast2D" parent="."]
+target_position = Vector2(-7, 0)
+
+[node name="Direction Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Direction Timer" to="." method="_on_direction_timer_timeout"]
