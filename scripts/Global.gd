@@ -4,27 +4,29 @@ var level = 1
 var lives = 3
 var score = 0
 
+
+func One_up():
+	if get_tree().current_scene:
+		var scene = get_tree().current_scene
+		if scene.has_method("play_one_up"):
+			scene.play_one_up()
+
 func update_lives():
-	
-	
-	print(lives)
+
 	if lives > 0:
 			get_tree().reload_current_scene()
 	else:
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-		score = 0
-		lives = 3
 
 func update_hud_coins():
 	score += 1
-	#var current_scene = get_tree().current_scene
-	#var hud = current_scene.get_node("HUD")
-	#var coin_count = hud.get_node("Coin Count")
-	#coin_count.text = ": X" + str(score)
 	if score == 100:
 		score = 0
+		One_up()
+		
 		if lives < 3:
 			lives += 1
+	
 	
 #func update_hearts():
 	#var current_scene = get_tree().current_scene
@@ -44,4 +46,5 @@ func update_level():
 	if level == 5:
 		score = 0
 		lives = 3
+		level = 0
 		get_tree().change_scene_to_file("res://scenes/game_complete.tscn")

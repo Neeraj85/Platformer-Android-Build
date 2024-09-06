@@ -4,6 +4,9 @@ extends Node
 @onready var lives_count = get_node("HUD").lives_count
 @onready var level_count = get_node("HUD").level
 
+func play_one_up():
+	$"player/One Up".play()
+	
 func _process(delta):
 	coin_count.text = ": X" + str(Global.score)
 	lives_count.text = ": X" + str(Global.lives)
