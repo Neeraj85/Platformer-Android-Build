@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6yn8ue6t47ye"]
+[gd_scene load_steps=5 format=3 uid="uid://c6yn8ue6t47ye"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_kgtew"]
 [ext_resource type="Texture2D" uid="uid://i2vgfqdbt8st" path="res://assets/sprites/Coin_Single.png" id="1_qux62"]
 [ext_resource type="Texture2D" uid="uid://dbi13yrc87tqq" path="res://assets/Heart.png" id="2_1b82p"]
+[ext_resource type="Texture2D" uid="uid://8tur64rbudpl" path="res://assets/New_arrows.png" id="4_d4jb6"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_kgtew")
@@ -22,6 +23,7 @@ texture = ExtResource("1_qux62")
 [node name="Coin Count" type="Label" parent="Container"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
 
 [node name="Heart image" type="TextureRect" parent="Container"]
 layout_mode = 2
@@ -30,7 +32,54 @@ texture = ExtResource("2_1b82p")
 [node name="Lives Count" type="Label" parent="Container"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
 
 [node name="Level Count" type="Label" parent="Container"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+
+[node name="Horizontal Arrows" type="HBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="left" type="TouchScreenButton" parent="Horizontal Arrows"]
+modulate = Color(1, 1, 1, 0.729412)
+position = Vector2(256, 0)
+rotation = -1.5708
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("4_d4jb6")
+texture_pressed = ExtResource("4_d4jb6")
+action = "move_left"
+
+[node name="right" type="TouchScreenButton" parent="Horizontal Arrows"]
+modulate = Color(1, 1, 1, 0.729412)
+position = Vector2(896, -256)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("4_d4jb6")
+texture_pressed = ExtResource("4_d4jb6")
+action = "move_right"
+
+[node name="jump arrow" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="jump" type="TouchScreenButton" parent="jump arrow"]
+modulate = Color(1, 1, 1, 0.729412)
+position = Vector2(-512, -264)
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("4_d4jb6")
+texture_pressed = ExtResource("4_d4jb6")
+action = "jump"
